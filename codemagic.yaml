@@ -11,11 +11,15 @@ workflows:
         ORG_GRADLE_PROJECT_cdvBuildToolsVersion: 33.0.0
 
     scripts:
-      - npm install -g cordova
-      - cordova platform remove android || true
-      - cordova platform add android@11.0.0
-      - cordova build android --release -- --packageType=apk
-      - cordova build android --release -- --packageType=bundle
+  - npm install -g cordova
+  - cordova platform remove android || true
+  - cordova platform add android@11.0.0
+
+  # Build DEBUG APK (installable on phone)
+  - cordova build android
+
+  # Build RELEASE AAB (for Play Store)
+  - cordova build android --release -- --packageType=bundle
 
     artifacts:
       - platforms/android/app/build/outputs/**/*.apk
