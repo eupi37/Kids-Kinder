@@ -5,13 +5,10 @@ workflows:
 
     environment:
       node: 18
-      groups:
-        - android
 
     scripts:
       - npm install -g cordova
       - cordova platform add android@12.0.1
-      - cordova requirements
       - cordova build android --release
 
     artifacts:
