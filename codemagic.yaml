@@ -8,13 +8,17 @@ workflows:
 
     scripts:
       - npm install -g cordova
-      - cordova platform remove android || true
-      - cordova platform add android@11.0.0
 
-      # Build installable APK (for testing)
+      # Remove old android platform
+      - cordova platform remove android || true
+
+      # Add latest android platform (supports SDK 33+)
+      - cordova platform add android@12.0.1
+
+      # Build debug APK (install in phone)
       - cordova build android
 
-      # Build AAB (for Play Store)
+      # Build release AAB (Play Store)
       - cordova build android --release -- --packageType=bundle
 
     artifacts:
