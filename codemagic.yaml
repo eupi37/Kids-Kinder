@@ -14,7 +14,8 @@ workflows:
       - npm install -g cordova
       - cordova platform remove android || true
       - cordova platform add android@11.0.0
-      - cordova build android --release
+      - cordova build android --release -- --packageType=apk
+      - cordova build android --release -- --packageType=bundle
 
     artifacts:
       - platforms/android/app/build/outputs/**/*.apk
