@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="com.kidskinder.app"
+        version="1.0.0"
+        xmlns="http://www.w3.org/ns/widgets"
+        xmlns:cdv="http://cordova.apache.org/ns/1.0">
+
+    <!-- App Name -->
+    <name>Kids Kinder</name>
+
+    <!-- Description -->
+    <description>
+        Kids Kinder Learning App for children education.
+    </description>
+
+    <!-- Author -->
+    <author email="adityaprakash3497@gmail.com">
+        Kids Kinder Developer
+    </author>
+
+    <!-- Main entry file -->
+    <content src="index.html"/>
+
+    <!-- Allow internet -->
+    <access origin="*"/>
+
+    <!-- Allow navigation -->
+    <allow-navigation href="*"/>
+
+    <!-- Android platform settings -->
+    <platform name="android">
+
+        <!-- App icon -->
+        <icon src="www/icon.png"/>
+
+        <!-- Allow intents -->
+        <allow-intent href="http://*/*"/>
+        <allow-intent href="https://*/*"/>
+        <allow-intent href="tel:*"/>
+        <allow-intent href="sms:*"/>
+        <allow-intent href="mailto:*"/>
+        <allow-intent href="geo:*"/>
+
+    </platform>
+
+    <!-- Fullscreen -->
+    <preference name="Fullscreen" value="true"/>
+
+    <!-- Orientation -->
+    <preference name="Orientation" value="portrait"/>
+
+</widget>
