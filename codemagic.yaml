@@ -5,20 +5,22 @@ workflows:
 
     environment:
       node: 18
-      vars:
-        ORG_GRADLE_PROJECT_cdvBuildToolsVersion: 33.0.0
-        ORG_GRADLE_PROJECT_cdvCompileSdkVersion: 33
-        ORG_GRADLE_PROJECT_cdvTargetSdkVersion: 33
 
     scripts:
       - npm install -g cordova
+
+      # Install required Android build tools manually
+      - yes | sdkmanager "platform-tools"
+      - yes | sdkmanager "platforms;android-33"
+      - yes | sdkmanager "build-tools;33.0.2"
+
       - cordova platform remove android || true
       - cordova platform add android@12.0.1
 
-      # Build debug APK (installable)
+      # Build debug APK
       - cordova build android
 
-      # Build Play Store AAB
+      # Build release AAB
       - cordova build android --release -- --packageType=bundle
 
     artifacts:
