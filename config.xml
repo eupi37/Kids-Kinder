@@ -1,51 +1,50 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <widget id="com.kidskinder.app"
         version="1.0.0"
         xmlns="http://www.w3.org/ns/widgets"
-        xmlns:cdv="http://cordova.apache.org/ns/1.0">
+        xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- App Name -->
     <name>Kids Kinder</name>
 
-    <!-- Description -->
+    <!-- App Description -->
     <description>
-        Kids Kinder Learning App for children education.
+        Kids Kinder is a fun learning app for children including animals, fruits, colours, and calendar learning.
     </description>
 
     <!-- Author -->
     <author email="adityaprakash3497@gmail.com">
-        Kids Kinder Developer
+        Kids Kinder
     </author>
 
-    <!-- Main entry file -->
-    <content src="index.html"/>
+    <!-- MAIN ENTRY FILE -->
+    <content src="index.html" />
 
-    <!-- Allow internet -->
-    <access origin="*"/>
-
-    <!-- Allow navigation -->
-    <allow-navigation href="*"/>
+    <!-- Allow all navigation -->
+    <allow-navigation href="*" />
+    <access origin="*" />
 
     <!-- Android platform settings -->
     <platform name="android">
 
-        <!-- App icon -->
-        <icon src="www/icon.png"/>
+        <!-- App Icon -->
+        <icon src="www/icon.png" density="ldpi" />
+        <icon src="www/icon.png" density="mdpi" />
+        <icon src="www/icon.png" density="hdpi" />
+        <icon src="www/icon.png" density="xhdpi" />
+        <icon src="www/icon.png" density="xxhdpi" />
+        <icon src="www/icon.png" density="xxxhdpi" />
 
-        <!-- Allow intents -->
-        <allow-intent href="http://*/*"/>
-        <allow-intent href="https://*/*"/>
-        <allow-intent href="tel:*"/>
-        <allow-intent href="sms:*"/>
-        <allow-intent href="mailto:*"/>
-        <allow-intent href="geo:*"/>
+        <!-- Enable modern Android support -->
+        <preference name="AndroidXEnabled" value="true" />
+        <preference name="AndroidXAppCompatVersion" value="1.6.1" />
 
     </platform>
 
-    <!-- Fullscreen -->
-    <preference name="Fullscreen" value="true"/>
-
-    <!-- Orientation -->
-    <preference name="Orientation" value="portrait"/>
+    <!-- General Preferences -->
+    <preference name="Fullscreen" value="false" />
+    <preference name="Orientation" value="portrait" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="BackupWebStorage" value="none" />
 
 </widget>
