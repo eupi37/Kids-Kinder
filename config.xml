@@ -28,12 +28,12 @@
     <platform name="android">
 
         <!-- App Icon -->
-        <icon src="www/icon.png" density="ldpi" />
-        <icon src="www/icon.png" density="mdpi" />
-        <icon src="www/icon.png" density="hdpi" />
-        <icon src="www/icon.png" density="xhdpi" />
-        <icon src="www/icon.png" density="xxhdpi" />
-        <icon src="www/icon.png" density="xxxhdpi" />
+        <icon src="www/icon.jpeg" density="ldpi" />
+        <icon src="www/icon.jpeg" density="mdpi" />
+        <icon src="www/icon.jpeg" density="hdpi" />
+        <icon src="www/icon.jpeg" density="xhdpi" />
+        <icon src="www/icon.jpeg" density="xxhdpi" />
+        <icon src="www/icon.jpeg" density="xxxhdpi" />
 
         <!-- Enable modern Android support -->
         <preference name="AndroidXEnabled" value="true" />
