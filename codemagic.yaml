@@ -6,6 +6,8 @@ workflows:
     environment:
       node: 18
       vars:
+        ORG_GRADLE_PROJECT_cdvCompileSdkVersion: 33
+        ORG_GRADLE_PROJECT_cdvTargetSdkVersion: 33
         ORG_GRADLE_PROJECT_cdvBuildToolsVersion: 33.0.0
 
     scripts:
