@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile</title>
+<style>
+  /* TOP BAR FIXES */
+  .game-topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: #2e7d32;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    box-sizing: border-box;
+    z-index: 1000;
+  }
+
+  .top-level { margin-left: 40px; font-size: 18px; }
+  .top-right { margin-left: auto; display: flex; align-items: center; gap: 5px; }
+  
+  /* Image sizing for coins */
+  .coin-icon { width: 45px; height: 80px; vertical-align: middle; }
+
+  body {
+    margin: 0;
+    padding-top: 60px;
+    background: #eaf4f4;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h2 { margin: 20px 0; font-size: 22px; color: #333; }
+
+  /* COMPACT PROFILE CARD */
+  .profile-card {
+    width: 90%; /* Responsive width */
+    max-width: 400px; /* Limits size on PC */
+    background: #ffffff;
+    border-radius: 20px; /* Modern rounded corners */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+  }
+
+  .profile-info {
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  .name-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  #childName {
+    width: 100px; /* Smaller input */
+    height: 28px;
+    font-size: 14px;
+    padding: 2px 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  /* SMALLER AVATAR */
+  .avatar-container {
+    position: relative;
+    width: 80px;      /* Narrower width */
+    height: 100px;     /* Taller height creates the OVAL */
+    background: #cfe8e6;
+    border-radius: 50%; /* This makes the unequal sides look oval */
+    overflow: hidden;   /* Keeps the image inside the oval */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+
+  #avatarImage {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #cfe8e6;
+    object-fit: cover;
+  }
+
+#editAvatarBtn {
+position: absolute;
+bottom: 5px;
+right: 5px;
+border: none;
+background: #ffc107;
+border-radius: 50%;
+padding: 6px;
+cursor: pointer;
+    }
+
+  /* POPUP STYLES */
+  .popup {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 2000;
+  }
+  .popup-box { background: white; padding: 20px; border-radius: 15px; text-align: center; width: 80%; max-width: 300px;}
+  .avatar-option { width: 70px; margin: 10px; cursor: pointer; border-radius: 50%; }
+  .hidden { display: none; }
+</style>
+</head>
+
+<body>
+ <!-- GAME TOP BAR -->
+<div class="game-topbar">
+  <div class="back-btn" onclick="goBack()">⬅</div>
+  <div class="top-level">
+    Lv: <span id="levelCount">0</span>
+  </div>
+  <div class="top-right">
+    <img src="image/coins.png" class="coin-icon" alt="coins">
+    <span id="coinCount">0</span>
+  </div>
+  
+</div>
+<h2>Profile</h2>
+
+<div class="profile-card">
+
+    <div class="profile-info">
+        <div class="name-row">
+            <span class="label">Name:</span>
+            <input
+              type="text"
+              id="childName"
+              value="XYZ"
+              disabled
+              maxlenth="8"
+            >
+            <span id="editNameBtn" class="edit-name">✏️</span>
+          </div>
+       
+       
+       <p>Level : <span id="levelText">0</span></p>
+        <p>
+         <img src="image/coins.png" class="coin-icon">
+           <span id="coinsText">0</span></p>
+    </div>
+<!-- Avatar Section -->
+<div class="avatar-container">
+    <img id="avatarImage" src="image/boy.png" alt="Avatar" />
+    <button id="editAvatarBtn">✏️</button>
+  </div>
+  
+  <!-- Avatar Popup -->
+  <div id="avatarPopup" class="popup hidden">
+    <div class="popup-box">
+      <h3>Choose Avatar</h3>
+  
+      <img src="image/boy.png" class="avatar-option" data-avatar="boy" />
+      <img src="image/girl.png" class="avatar-option" data-avatar="girl" />
+  
+      <br /><br />
+      <button id="closePopup">Close</button>
+    </div>
+  </div>
+</div>
+<script>
+ function goBack() {
+  window.location.href = "index.html";
+}
+
+    const editBtn = document.getElementById("editNameBtn");
+    const nameInput = document.getElementById("childName");
+  
+    // Load saved name when page opens
+    const savedName = localStorage.getItem("childName");
+    if (savedName) {
+      nameInput.value = savedName;
+    }
+  
+    // Click pencil → enable editing
+    editBtn.addEventListener("click", () => {
+      nameInput.disabled = false;
+      nameInput.focus();
+      nameInput.select();
+    });
+  
+    // Press Enter → save name
+    nameInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        if (nameInput.value.trim() !== "") {
+          localStorage.setItem("childName", nameInput.value.trim());
+        }
+        nameInput.disabled = true;
+      }
+    });
+  </script>
+  <script>
+  const avatarImage = document.getElementById("avatarImage");
+  const editAvatarBtn = document.getElementById("editAvatarBtn");
+  const avatarPopup = document.getElementById("avatarPopup");
+  const closePopup = document.getElementById("closePopup");
+  const avatarOptions = document.querySelectorAll(".avatar-option");
+
+  // Load saved avatar
+  const savedAvatar = localStorage.getItem("avatar");
+  if (savedAvatar) {
+    avatarImage.src = savedAvatar;
+  }
+
+  // Open popup
+  editAvatarBtn.onclick = () => {
+    avatarPopup.classList.remove("hidden");
+  };
+
+  // Close popup
+  closePopup.onclick = () => {
+    avatarPopup.classList.add("hidden");
+  };
+
+  // Choose avatar
+  avatarOptions.forEach(option => {
+    option.onclick = () => {
+      const selected =
+        option.dataset.avatar === "boy"
+          ? "image/boy.png"
+          : "image/girl.png";
+
+      avatarImage.src = selected;
+      localStorage.setItem("avatar", selected);
+      avatarPopup.classList.add("hidden");
+    };
+  });
+</script>
+<script src="js/game.js"></script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
