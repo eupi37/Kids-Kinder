@@ -8,14 +8,9 @@ workflows:
 
     scripts:
       - npm install -g cordova
-      - cordova create myApp com.kidskinder.app "Kids Kinder"
-      - cd myApp
-      - rm -rf www
-      - cp -r ../www ./www
-      - cp ../config.xml .
       - cordova platform add android
       - cordova build android --release
 
     artifacts:
-      - myApp/platforms/android/app/build/outputs/**/*.apk
-      - myApp/platforms/android/app/build/outputs/**/*.aab
+      - platforms/android/app/build/outputs/**/*.apk
+      - platforms/android/app/build/outputs/**/*.aab
